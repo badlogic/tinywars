@@ -9,7 +9,7 @@
 			"request": "launch",
 			"name": "tinywars client",
 			"url": "http://localhost:3000",
-			"webRoot": "${workspaceFolder}/public"
+			"webRoot": "${workspaceFolder}/assets"
 		}
 	]
 }

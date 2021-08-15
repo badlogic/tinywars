@@ -15,7 +15,7 @@ export function setupAssetReload(app: Express, assetPath: string) {
 	(function(){
 	var lastChangeTimestamp = null;
 	setInterval(() => {
-		fetch("/reload")
+		fetch("/assetreload")
 			.then(response => response.text())
 			.then(timestamp => {
 				if (lastChangeTimestamp == null) {
@@ -30,7 +30,7 @@ export function setupAssetReload(app: Express, assetPath: string) {
 	`;
 
 	let sendFile = (filename: string, res: Response<any, Record<string, any>>) => {
-		fs.readFile(path.join(__dirname, '../public', filename), function (err, data) {
+		fs.readFile(path.join(__dirname, "..", assetPath, filename), function (err, data) {
 			if (err) {
 				res.sendStatus(404);
 			} else {
@@ -48,7 +48,7 @@ export function setupAssetReload(app: Express, assetPath: string) {
 		sendFile(req.path, res);
 	});
 
-	app.get("/reload", (req, res) => {
+	app.get("/assetreload", (req, res) => {
 		res.send(`${lastChangeTimestamp}`);
 	});
 }

@@ -1,4 +1,4 @@
 node_modules
 build
-public/tinywars.js*
+assets/tinywars.js*
 docker/data

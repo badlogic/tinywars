@@ -2,7 +2,7 @@
   "scripts": {
     "dev": "concurrently \"npm:dev-server\" \"npm:dev-client\"",
     "dev-server": "tsc-watch -p tsconfig.server.json --onSuccess \"node ./build/server.js\"",
-    "dev-client": "./node_modules/.bin/esbuild client/tinywars.ts --bundle --outfile=public/tinywars.js --sourcemap --watch"
+    "dev-client": "./node_modules/.bin/esbuild client/tinywars.ts --bundle --outfile=assets/tinywars.js --sourcemap --watch"
   },
   "dependencies": {
     "chokidar": "^3.5.2",
