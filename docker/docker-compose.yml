@@ -1,0 +1,25 @@
+version: "3"
+services:
+    web:
+        image: nginx:latest
+        container_name: tinywars_nginx
+        restart: always
+        volumes:
+            - ./nginx.conf:/etc/nginx/conf.d/default.conf            
+            - ./data/logs:/logs
+        environment:
+            VIRTUAL_HOST: tinywars.io,www.tinywars.io
+            LETSENCRYPT_HOST: tinywars.io,www.tinywars.io
+            LETSENCRYPT_EMAIL: "badlogicgames@gmail.com"        
+    site:
+        build:
+            dockerfile: Dockerfile.site
+            context: .
+        container_name: tinywars_site
+        restart: always        
+        environment:
+            - TINYWARS_RELOAD_PWD=${TINYWARS_RELOAD_PWD}
+networks:
+    default:
+        external:
+            name: nginx-proxy

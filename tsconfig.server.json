@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "sourceMap": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "rootDir": "./server",
+        "outDir": "build"
+    },
+    "include": [
+        "server/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+}
