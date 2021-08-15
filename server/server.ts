@@ -12,7 +12,8 @@ app.use(express.static("assets"));
 
 app.get("/reload", (req, res) => {
 	if (process.env.TINYWARS_RELOAD_PWD == req.query["pwd"]) {
-		process.exit(0);
+		res.sendStatus(200);
+		setTimeout(() => process.exit(0), 1000);
 	}
 });
 
