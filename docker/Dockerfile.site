@@ -1,4 +1,7 @@
 FROM node:16
-WORKDIR /
-RUN git clone https://github.com/badlogic/tinywars
-CMD cd /tinywars && ./prod.sh
+
+WORKDIR /tinywars
+RUN git clone https://github.com/badlogic/tinywars /tinywars
+RUN npm install -g typescript
+RUN npm install
+CMD ./prod.sh
