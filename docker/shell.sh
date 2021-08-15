@@ -1,2 +1,2 @@
 #!/bin/bash
-docker exec -it $1 bash
+docker exec -it tinywars_site bash
