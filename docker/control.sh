@@ -19,18 +19,18 @@ dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 pushd $dir > /dev/null
 
 case "$1" in
--restart) 
+restart) 
 	curl -X GET https://tinywars.io/restart?pwd=$TINYWARS_RESTART_PWD
 	;;
--start)
+start)
 	git pull
 	docker-compose build --no-cache
 	docker-compose up -d
 	;;
--stop)
+stop)
 	docker-compose down
 	;;
--shell)
+shell)
 	docker exec -it tinywars_site bash
 	;;
 *) 
