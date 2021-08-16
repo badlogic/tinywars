@@ -6,7 +6,7 @@ import { setupAssetReload } from "./reload";
 const port = 3000;
 const app = express()
 const server = createServer(app);
-const io = new Server(server);
+const io = new Server(server, { cors: { origin: "*" } });
 
 // Setup express
 if (process.env.NODE_DEV != "production") {
