@@ -5,7 +5,7 @@ class TinyWars implements gute.Game {
 	socket: Socket;
 
 	init(context: gute.GameContext): void {
-		this.socket = io();
+		this.socket = io({ transports: ['websocket'] });
 		this.socket.on("connect", () => {
 			console.log("connected");
 		})
