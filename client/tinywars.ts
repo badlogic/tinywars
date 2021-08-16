@@ -1,9 +1,17 @@
 import * as gute from "gute/dist"
-
+import { io, Socket } from "socket.io-client"
 
 class TinyWars implements gute.Game {
+	socket: Socket;
+
 	init(context: gute.GameContext): void {
-		console.log("initialized");
+		this.socket = io();
+		this.socket.on("connect", () => {
+			console.log("connected");
+		})
+		this.socket.on("disconnect", () => {
+			console.log("disconnected");
+		})
 	}
 	onMouseDown(context: gute.GameContext, x: number, y: number): void {
 	}
