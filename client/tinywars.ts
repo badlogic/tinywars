@@ -13,7 +13,7 @@ class TinyWars implements gute.Game {
 			console.log("disconnected");
 		})*/
 
-		let ws = new WebSocket(`ws://${location.host}/ws`);
+		let ws = new WebSocket(`${location.protocol == "https" ? "wss" : "ws"}://${location.host}/ws`);
 		ws.onerror = function () {
 			console.log("Error ws");
 		};
