@@ -1,21 +1,19 @@
 import { Express, Response } from "express";
 import * as fs from "fs";
 import * as path from "path";
+import chokidar from "chokidar"
 
 var lastChangeTimestamp = 0;
 
 export function setupLiveEdit(app: Express, assetPath: string) {
-	const chokidar = require('chokidar');
-	chokidar.watch(assetPath).on('all', () => {
-		lastChangeTimestamp = Date.now();
-	});
+	chokidar.watch(assetPath).on('all', () => lastChangeTimestamp = Date.now());
 
 	var reloadScript = `
 	<script>
 	(function(){
 	var lastChangeTimestamp = null;
 	setInterval(() => {
-		fetch("/liveedit")
+		fetch("/live-edit")
 			.then(response => response.text())
 			.then(timestamp => {
 				if (lastChangeTimestamp == null) {
@@ -40,15 +38,8 @@ export function setupLiveEdit(app: Express, assetPath: string) {
 		});
 	};
 
-	app.get("/", (req, res, next) => {
-		sendFile("index.html", res);
-	});
-
-	app.get("/*.html", (req, res, next) => {
-		sendFile(req.path, res);
-	});
-
-	app.get("/liveedit", (req, res) => {
-		res.send(`${lastChangeTimestamp}`);
-	});
+	app.get("/", (req, res, next) => sendFile("index.html", res));
+	app.get("/*.html", (req, res, next) => sendFile(req.path, res));
+	app.get("/*.css", (req, res, next) => sendFile(req.path, res));
+	app.get("/live-edit", (req, res) => res.send(`${lastChangeTimestamp}`));
 }

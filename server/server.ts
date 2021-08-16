@@ -27,14 +27,9 @@ app.get("/restart", (req, res) => {
 const io = new Server(server, { path: "/ws" });
 io.on("connection", (socket: Socket) => {
 	console.log("Client connected");
-
-	socket.on("disconnect", (reason: string) => {
-		console.log("Client disconnected");
-	})
+	socket.on("disconnect", (reason: string) => console.log("Client disconnected"));
 });
 
 // Run server
-server.on("listening", () => {
-	console.log(`Server started on port ${port}, restart password: ${restartPassword}`);
-})
+server.on("listening", () => console.log(`Server started on port ${port}`));
 server.listen(port);
