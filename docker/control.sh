@@ -10,7 +10,9 @@ printHelp () {
 	echo "   start      Pulls changes, builds docker image(s), and starts"
 	echo "              the services (Nginx, Node.js)."
 	echo
-	echo "   stop       Stops the services."
+	echo "   stop       Stops the services."	
+	echo
+	echo "   logs       Tail -f services' logs."
 	echo
 	echo "   shell      Opens a shell into the Node.js container."
 }
@@ -32,6 +34,9 @@ stop)
 	;;
 shell)
 	docker exec -it tinywars_site bash
+	;;
+logs)
+	docker-compose logs -f
 	;;
 *) 
 	echo "Invalid command $1"
