@@ -15,6 +15,9 @@ printHelp () {
 	echo "   shell      Opens a shell into the Node.js container."
 }
 
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+pushd $dir
+
 case "$1" in
 -restart) 
 	curl -X GET https://tinywars.io/restart?pwd=$TINYWARS_RESTART_PWD
@@ -35,3 +38,5 @@ case "$1" in
 	printHelp
 	;;
 esac
+
+popd
