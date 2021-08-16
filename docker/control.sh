@@ -16,7 +16,7 @@ printHelp () {
 }
 
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
-pushd $dir
+pushd $dir > /dev/null
 
 case "$1" in
 -restart) 
@@ -39,4 +39,4 @@ case "$1" in
 	;;
 esac
 
-popd
+popd > /dev/null
