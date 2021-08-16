@@ -2,11 +2,11 @@ import { createServer } from "http";
 import express from "express";
 import { Server, Socket } from "socket.io";
 import { setupAssetReload } from "./reload";
+import * as ws from "ws";
 
 const port = 3000;
 const app = express()
 const server = createServer(app);
-const io = new Server(server, { cors: { origin: "*" } });
 
 // Setup express
 if (process.env.NODE_DEV != "production") {
@@ -21,10 +21,18 @@ app.get("/reload", (req, res) => {
 	}
 });
 
-// Setup socket.io
-io.on("connection", (socket: Socket) => {
-	console.log("Connected socket");
+// Setup websockets
+const wsserver = new ws.Server({ server: server, path: "/ws" });
+
+wsserver.on("connection", (ws: WebSocket) => {
+	console.log("Connected ws socket");
 });
+
+// Setup socket.io
+// const io = new Server(server);
+// io.on("connection", (socket: Socket) => {
+//	console.log("Connected socket");
+// });
 
 // Run server
 server.on("listening", () => {

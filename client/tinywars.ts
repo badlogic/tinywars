@@ -5,13 +5,24 @@ class TinyWars implements gute.Game {
 	socket: Socket;
 
 	init(context: gute.GameContext): void {
-		this.socket = io({ transports: ['websocket'] });
+		/*this.socket = io({ transports: ['websocket'] });
 		this.socket.on("connect", () => {
 			console.log("connected");
 		})
 		this.socket.on("disconnect", () => {
 			console.log("disconnected");
-		})
+		})*/
+
+		let ws = new WebSocket(`ws://${location.host}/ws`);
+		ws.onerror = function () {
+			console.log("Error ws");
+		};
+		ws.onopen = function () {
+			console.log("Connected ws");
+		};
+		ws.onclose = function () {
+			console.log("Closed ws");
+		};
 	}
 	onMouseDown(context: gute.GameContext, x: number, y: number): void {
 	}
