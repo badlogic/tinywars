@@ -4,7 +4,7 @@ import * as path from "path";
 
 var lastChangeTimestamp = 0;
 
-export function setupAssetReload(app: Express, assetPath: string) {
+export function setupLiveEdit(app: Express, assetPath: string) {
 	const chokidar = require('chokidar');
 	chokidar.watch(assetPath).on('all', () => {
 		lastChangeTimestamp = Date.now();
@@ -15,7 +15,7 @@ export function setupAssetReload(app: Express, assetPath: string) {
 	(function(){
 	var lastChangeTimestamp = null;
 	setInterval(() => {
-		fetch("/assetreload")
+		fetch("/liveedit")
 			.then(response => response.text())
 			.then(timestamp => {
 				if (lastChangeTimestamp == null) {
@@ -48,7 +48,7 @@ export function setupAssetReload(app: Express, assetPath: string) {
 		sendFile(req.path, res);
 	});
 
-	app.get("/assetreload", (req, res) => {
+	app.get("/liveedit", (req, res) => {
 		res.send(`${lastChangeTimestamp}`);
 	});
 }

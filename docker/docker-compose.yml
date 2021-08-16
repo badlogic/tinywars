@@ -18,7 +18,7 @@ services:
         container_name: tinywars_site
         restart: always        
         environment:
-            - TINYWARS_RELOAD_PWD=${TINYWARS_RELOAD_PWD}
+            - TINYWARS_RESTART_PWD=${TINYWARS_RESTART_PWD}
 networks:
     default:
         external:

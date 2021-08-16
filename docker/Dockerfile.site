@@ -4,4 +4,4 @@ WORKDIR /tinywars
 RUN git clone https://github.com/badlogic/tinywars /tinywars
 RUN npm install -g typescript
 RUN npm install
-CMD ./prod.sh
+CMD ./docker/main.sh
