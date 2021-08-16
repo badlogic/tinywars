@@ -10,7 +10,7 @@ services:
         environment:
             VIRTUAL_HOST: tinywars.io,www.tinywars.io
             LETSENCRYPT_HOST: tinywars.io,www.tinywars.io
-            LETSENCRYPT_EMAIL: "badlogicgames@gmail.com"        
+            LETSENCRYPT_EMAIL: "badlogicgames@gmail.com"   
     site:
         build:
             dockerfile: Dockerfile.site
