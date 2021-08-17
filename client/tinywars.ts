@@ -29,7 +29,7 @@ class TinyWars implements gute.Game {
 		g.fitScreen(1);
 		g.fillRect(0, 0, g.getWidth(), g.getHeight(), "black");
 		g.setFontSize(32);
-		g.drawString(20, 35, "tinywars", "white")
+		g.drawString(g.getWidth() / 2 - g.getStringWidth("tinywars") / 2, g.getHeight() / 2 - 32 / 2, "tinywars", "white");
 	}
 }
 
