@@ -40,6 +40,5 @@ export function setupLiveEdit(app: Express, assetPath: string) {
 
 	app.get("/", (req, res, next) => sendFile("index.html", res));
 	app.get("/*.html", (req, res, next) => sendFile(req.path, res));
-	app.get("/*.css", (req, res, next) => sendFile(req.path, res));
 	app.get("/live-edit", (req, res) => res.send(`${lastChangeTimestamp}`));
 }

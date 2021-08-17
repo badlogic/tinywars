@@ -26,8 +26,9 @@ class TinyWars implements gute.Game {
 	update(context: gute.GameContext, delta: number): void {
 	}
 	render(context: gute.GameContext, g: gute.Graphics): void {
-		g.fillRect(0, 0, 320, 240, "blue");
-		g.drawLine(0, 0, 320, 240, "green");
+		g.fitScreen(1);
+		g.fillRect(0, 0, g.getWidth(), g.getHeight(), "blue");
+		g.drawLine(0, 0, g.getWidth(), g.getHeight(), "green");
 	}
 }
 
