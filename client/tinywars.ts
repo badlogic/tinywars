@@ -44,14 +44,14 @@ class TinyWars implements gute.Game {
 			this.vy = -1;
 		}
 
-		this.x = this.x + 100 * this.vx * delta / 1000;
+		this.x = this.x + 200 * this.vx * delta / 1000;
 		this.y = this.y + 100 * this.vy * delta / 1000;
 	}
 	render(context: gute.GameContext, g: gute.Graphics): void {
 		g.fitScreen(1);
 		g.fillRect(0, 0, g.getWidth(), g.getHeight(), "black");
 		g.setFontSize(32);
-		g.drawString(this.x, this.y, "tinywars", "pink");
+		g.drawString(this.x, this.y, "tinywars", "white");
 	}
 }
 
