@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 printHelp () {
 	echo "Usage: control.sh <command>"
 	echo "Available commands:"
@@ -21,7 +23,7 @@ dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 pushd $dir > /dev/null
 
 case "$1" in
-restart) 
+restart)
 	curl -X GET https://tinywars.io/restart?pwd=$TINYWARS_RESTART_PWD
 	;;
 start)
