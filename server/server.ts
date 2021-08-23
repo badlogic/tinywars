@@ -20,7 +20,7 @@ app.get("/restart", (req, res) => {
 	if (restartPassword === req.query["pwd"]) {
 		res.sendStatus(200);
 		setTimeout(() => process.exit(0), 1000);
-	}
+	} else res.sendStatus(400);
 });
 
 // Setup socket.io
